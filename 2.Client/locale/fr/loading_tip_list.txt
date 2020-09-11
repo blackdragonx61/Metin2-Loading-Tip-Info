@@ -1,0 +1,170 @@
+#Group Normal은 맨 처음에 위치해야 합니다.
+#Group 이름은 아무거나 상관없습니다.
+#없는 tip_vnum일 경우 아무것도 표기되지 않습니다.
+#없는 map_index일 경우 맨 처음 Group(현재 - Group Normal)해당하는 tip_vnum이 사용됩니다.
+#map_index의 값을 비워 놓을 경우 Group Normal의 tip_vnum을 사용합니다.
+Group Normal
+{
+	list tip_vnum
+	{
+		1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 21 107
+	}
+	list map_index
+	{
+		
+	}
+}
+Group monkey
+{
+	list tip_vnum
+	{
+		22 23 24 25
+	}
+	list map_index
+	{
+		5 25 45 107 108 109
+	}
+}
+Group spider
+{
+	list tip_vnum
+	{
+		26 27 28 29 30
+	}
+	list map_index
+	{
+		71 104 217
+	}
+}
+Group deviltower
+{
+	list tip_vnum
+	{
+		31 32 33 34
+	}
+	list map_index
+	{
+		66
+	}
+}
+Group devilcatacomb
+{
+	list tip_vnum
+	{
+		35 36 37 38 39
+	}
+	list map_index
+	{
+		216
+	}
+}
+Group skipia
+{
+	list tip_vnum
+	{
+		41 42 43 44 45 46 47 48
+	}
+	list map_index
+	{
+		72 73 208
+	}
+}
+Group flame
+{
+	list tip_vnum
+	{
+		49 50 51 52 53
+	}
+	list map_index
+	{
+		351
+	}
+}
+Group snow
+{
+	list tip_vnum
+	{
+		54 55 56 57 58 59
+	}
+	list map_index
+	{
+		352
+	}
+}
+Group thunder
+{
+	list tip_vnum
+	{
+		60 61 62 63 64 65 66
+	}
+	list map_index
+	{
+		353 354
+	}
+}
+Group flamedragon
+{
+	list tip_vnum
+	{
+		67 68 69 70 71 72 73 74
+	}
+	list map_index
+	{
+		356
+	}
+}
+Group 12zi
+{
+	list tip_vnum
+	{
+		75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97
+	}
+	list map_index
+	{
+		355
+	}
+}
+Group defensewave
+{
+	list tip_vnum
+	{
+		98 99 100 101 102 103 104 105
+	}
+	list map_index
+	{
+		358
+	}
+}
+Group defenseport
+{
+	list tip_vnum
+	{
+		106
+	}
+	list map_index
+	{
+		359
+	}
+}
+Group bossdungeon
+{
+	list tip_vnum
+	{
+		108 109 110 111 112 113 114
+	}
+	list map_index
+	{
+		363 364 365 366 367 368 369 370 371
+	}
+}
+Group elemental
+{
+	list tip_vnum
+	{
+		115 116 117 118 119 120
+	}
+	list map_index
+	{
+		378 379 380 381
+	}
+}

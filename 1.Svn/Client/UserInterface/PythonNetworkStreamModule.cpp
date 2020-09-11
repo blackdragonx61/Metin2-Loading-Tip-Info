@@ -1,34 +1,27 @@
 ///Add
 #if defined(__LOADING_TIP__)
-#include "LTiplist.h"
 #include "PythonBackground.h"
 PyObject* netGetTipInfo(PyObject* poSelf, PyObject* poArgs)
 {
-	auto Find("");
-	const auto idx = CPythonBackground::Instance().GetWarpMapIndex();
-	using namespace NS_TipList;
+	const auto& TipMap = CPythonNetworkStream::Instance().GetTipMap();
+	const auto& TipList = CPythonNetworkStream::Instance().GetTipList();
 
-	if (!Tip_List.empty()) {
-		const auto it = std::find_if(Tip_List.begin(), Tip_List.end(), [&idx](const decltype(Tip_List)::value_type& Tlist) {
-			const auto& MapVec = std::get<MAP_VEC>(Tlist);
-			return (std::find(MapVec.begin(), MapVec.end(), idx) != MapVec.end());
+	if (!TipMap.empty() && !TipList.empty()) {
+		auto it = std::find_if(TipList.begin(), TipList.end(), [](const std::pair<std::vector<long>, std::vector<int>>& Tlist)
+		{
+			const auto& MapVec = Tlist.first;
+			return std::find(MapVec.begin(), MapVec.end(), CPythonBackground::Instance().GetWarpMapIndex()) != MapVec.end();
 		});
 
-		const auto& Tip_Tuple = (it != Tip_List.end()) ? *it : *Tip_List.begin();
-
-		try {
-			const auto& VnumVec = std::get<VNUM_VEC>(Tip_Tuple);
-			const auto& idx = VnumVec.at(random_range(0, VnumVec.size() - 1));
-			Find = CPythonNetworkStream::Instance().GetTipMap().at(idx).c_str();
-		}
-		catch (const std::out_of_range & ex) {
-			TraceError("netGetTipInfo error:: %s", ex.what());
-			TraceError("netGetTipInfo WarpMapIndex:: %ld", idx);
-			TraceError("netGetTipInfo---> Find:%s ", std::get<NAMESTR>(Tip_Tuple));
+		const auto& TipVnumVec = (it != TipList.end()) ? (*it).second : TipList.front().second;
+		if (!TipVnumVec.empty()) {
+			const auto& idx = TipVnumVec.at(random_range(0, TipVnumVec.size() - 1));
+			if (TipMap.count(idx))
+				return Py_BuildValue("s", TipMap.at(idx).c_str());
 		}
 	}
 
-	return Py_BuildValue("s", Find);
+	return Py_BuildValue("s", "");
 }
 #endif
 
