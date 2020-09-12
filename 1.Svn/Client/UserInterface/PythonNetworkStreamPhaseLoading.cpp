@@ -20,7 +20,7 @@ bool CPythonNetworkStream::LoadTipVnum(const char* FileName)
 
 	for (DWORD i = 0; i < kTextFileLoader.GetLineCount(); ++i)
 		if (kTextFileLoader.SplitLineByTab(i, &kTokenVector))
-			m_TipVnum.emplace(stoi(kTokenVector.at(0)), kTokenVector.at(1));
+			m_TipVnum.emplace(std::stoi(kTokenVector.at(0)), kTokenVector.at(1));
 	return true;
 }
 
