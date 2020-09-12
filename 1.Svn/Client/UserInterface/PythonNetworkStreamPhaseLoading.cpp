@@ -8,19 +8,20 @@ bool CPythonNetworkStream::IsInsultIn(const char* c_szMsg)
 #if defined(__LOADING_TIP__)
 bool CPythonNetworkStream::LoadTipVnum(const char* FileName)
 {
+	m_TipVnum.clear();
 	const VOID* pvData;
 	CMappedFile kFile;
 	if (!CEterPackManager::Instance().Get(kFile, FileName, &pvData))
 		return false;
 
-	m_TipVnum.clear();
 	CMemoryTextFileLoader kTextFileLoader;
 	kTextFileLoader.Bind(kFile.Size(), pvData);
+	
 	CTokenVector kTokenVector;
-
 	for (DWORD i = 0; i < kTextFileLoader.GetLineCount(); ++i)
 		if (kTextFileLoader.SplitLineByTab(i, &kTokenVector))
-			m_TipVnum.emplace(std::stoi(kTokenVector.at(0)), kTokenVector.at(1));
+			m_TipVnum.emplace(std::stoi(kTokenVector.at(0)), std::move(kTokenVector.at(1)));
+
 	return true;
 }
 
@@ -29,7 +30,7 @@ bool CPythonNetworkStream::LoadTipList(const char* FileName)
 	m_TipList.clear();
 
 	CTextFileLoader* pkTextFileLoader = CTextFileLoader::Cache(FileName);
-	
+
 	if (!pkTextFileLoader)
 		return false;
 
@@ -39,7 +40,7 @@ bool CPythonNetworkStream::LoadTipList(const char* FileName)
 	pkTextFileLoader->SetTop();
 
 	for (DWORD i = 0; i < pkTextFileLoader->GetChildNodeCount(); ++i) {
-		
+
 		CTextFileLoader::CGotoChild GotoChild(pkTextFileLoader, i);
 
 		CTokenVector* tv;
