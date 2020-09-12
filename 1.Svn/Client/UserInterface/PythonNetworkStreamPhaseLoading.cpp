@@ -51,7 +51,7 @@ bool CPythonNetworkStream::LoadTipList(const char* FileName)
 		std::vector<int> tipindex;
 		if (pkTextFileLoader->GetTokenVector("tip_vnum", &tv))
 			for (auto it = tv->begin(); it != tv->end(); ++it)
-				tipindex.emplace_back(std::stol(*it));
+				tipindex.emplace_back(std::stoi(*it));
 
 		m_TipList.emplace_back(std::move(mapindex), std::move(tipindex));
 	}
