@@ -5,6 +5,4 @@
 
 * Group "Normal" has global informations. If you don't add any special map index at TipList, you will see global infos.
 
-* One thing you need to know, special informations not working at "First Login", because warpmapindex is 0 at login. So you will see global informations.
-
 ![](https://puu.sh/FJUYb/78471ba862.png)
